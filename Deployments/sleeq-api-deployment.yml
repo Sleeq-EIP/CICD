@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sleeq-api
+  name: sleeq-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleeq-api
+  template:
+    metadata:
+      labels:
+        app: sleeq-api
+    spec:
+      containers:
+      - image: hdms241/apiserver:latest
+        name: apiserver
+        ports:
+        - containerPort: 8081
+          name: apiserver
