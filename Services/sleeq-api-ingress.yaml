@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sleeq-api-ingress
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: "/api"
+        pathType: Prefix
+        backend:
+          service:
+            name: sleeq-api-service
+            port:
+              number: 80
+    
