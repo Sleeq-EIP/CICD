@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: mongo
-  name: mongo
+    app: sleeq-mongo
+  name: sleeq-mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongo
+      app: sleeq-mongo
   strategy: {}
   template:
     metadata:
       labels:
-        app: mongo
+        app: sleeq-mongo
     spec:
       containers:
       - image: mongo
-        name: mongo
+        name: sleeq-mongo
         args: ["--dbpath","/data/db"]
         # livenessProbe:
         #   exec:
@@ -47,17 +47,17 @@ spec:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
             secretKeyRef:
-              name: mongo-creds
+              name: sleeq-mongo-creds
               key: username
         - name: MONGO_INITDB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mongo-creds
+              name: sleeq-mongo-creds
               key: password
         volumeMounts:
-        - name: "mongo-data-dir"
+        - name: "sleeq-mongo-data-dir"
           mountPath: "/data/db"
       volumes:
-      - name: "mongo-data-dir"
+      - name: "sleeq-mongo-data-dir"
         persistentVolumeClaim:
-          claimName: "mongo-data"
+          claimName: "sleeq-mongo-data"

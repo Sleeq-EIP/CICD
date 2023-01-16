@@ -14,4 +14,10 @@ spec:
             name: sleeq-api-service
             port:
               number: 80
-    
+      - path: "/db"
+        pathType: Prefix
+        backend:
+          service:
+            name: sleeq-mongo-service
+            port:
+              number: 27017

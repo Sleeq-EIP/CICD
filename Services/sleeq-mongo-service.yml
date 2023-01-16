@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: mongo
-  name: mongo-nodeport-svc
+    app: sleeq-mongo
+  name: sleeq-mongo-service
 spec:
   type: ClusterIP
   ports:
   - port: 27017
     targetPort: 27017
   selector:
-    app: mongo
+    app: sleeq-mongo
