@@ -9,5 +9,5 @@ spec:
     name: sleeq-api
   policy:
     semver:
-      range: x
+      range: '>=1.0.0'
 

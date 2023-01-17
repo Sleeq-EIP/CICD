@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
       - image: hdms241/apiserver:latest
+        imagePullPolicy: IfNotPresent
         name: sleeq-api
         ports:
         - containerPort: 8081
