@@ -14,7 +14,7 @@ spec:
         app: sleeq-api
     spec:
       containers:
-      - image: hdms241/apiserver:latest
+      - image: hdms241/apiserver:latest # {"$imagepolicy": "flux-system:podinfo"}
         imagePullPolicy: IfNotPresent
         name: sleeq-api
         ports:
