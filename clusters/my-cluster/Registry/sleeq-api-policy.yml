@@ -9,4 +9,4 @@ spec:
     name: sleeq-api
   policy:
     semver:
-      range: '^'
+      range: '>=1.0.0 <2.0.0'
