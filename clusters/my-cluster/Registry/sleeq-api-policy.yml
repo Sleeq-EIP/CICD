@@ -7,7 +7,8 @@ metadata:
 spec:
   imageRepositoryRef:
     name: sleeq-api
+  filterTags:
+    pattern: '.*-rc.*'
   policy:
     semver:
-      range: '>=1.0.0'
-
+      range: '^1.x-0'
