@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: sleeq-mongo-data
-  namespace: sleeq
+  namespace: default
 spec:
   accessModes:
     - ReadWriteOnce 

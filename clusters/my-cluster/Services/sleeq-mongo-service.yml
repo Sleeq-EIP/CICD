@@ -4,7 +4,7 @@ metadata:
   labels:
     app: sleeq-mongo
   name: sleeq-mongo-service
-  namespace: sleeq
+  namespace: default
 spec:
   type: ClusterIP
   ports:
