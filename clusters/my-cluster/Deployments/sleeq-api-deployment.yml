@@ -51,6 +51,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: sleeq-api
+  namespace: default
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
