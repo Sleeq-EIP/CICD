@@ -9,4 +9,4 @@ spec:
     name: sleeq-api
   policy:
     semver:
-      range: 'latest'
+      range: '^'
