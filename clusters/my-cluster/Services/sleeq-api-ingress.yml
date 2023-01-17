@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: sleeq-api-ingress
+  namespace: sleeq
 spec:
   rules:
   - host: localhost

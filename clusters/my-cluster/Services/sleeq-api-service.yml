@@ -4,6 +4,7 @@ metadata:
   labels:
     app: sleeq-api
   name: sleeq-api-service
+  namespace: sleeq
 spec:
   type: ClusterIP
   selector:
