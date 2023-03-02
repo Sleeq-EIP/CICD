@@ -3,10 +3,12 @@ kind: Ingress
 metadata:
   name: sleeq-api-ingress
   namespace: default
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
   rules:
-  - host: localhost
-    http:
+  # - host: "hello-sleeq.sev"
+  - http:
       paths:
       - path: "/api"
         pathType: Prefix
@@ -22,3 +24,4 @@ spec:
             name: sleeq-mongo-service
             port:
               number: 27017
+
