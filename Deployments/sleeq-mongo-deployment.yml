@@ -45,16 +45,16 @@ spec:
         #   successThreshold: 1
         #   failureThreshold: 6
         env:
-        - name: MONGO_INITDB_ROOT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: sleeq-mongo-creds
-              key: username
-        - name: MONGO_INITDB_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sleeq-mongo-creds
-              key: password
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: sleeq-mongo-creds
+                key: username
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: sleeq-mongo-creds
+                key: password
         volumeMounts:
         - name: "sleeq-mongo-data-dir"
           mountPath: "/data/db"

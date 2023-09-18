@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sleeq-jenkins
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleeq-jenkins
+  template:
+    metadata:
+      labels:
+        app: sleeq-jenkins
+    spec:
+      securityContext:
+          fsGroup: 1000 
+          runAsUser: 1000
+      containers:
+        - name: sleeq-jenkins
+          image: jenkins/jenkins:latest
+          args:
+          - "--prefix=/jenkins"
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+            requests:
+              memory: "500Mi"
+              cpu: "500m"
+          ports:
+            - name: httpport
+              containerPort: 8080
+            - name: jnlpport
+              containerPort: 50000
+          livenessProbe:
+            httpGet:
+              path: "/jenkins/login"
+              port: 8080
+            initialDelaySeconds: 90
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: "/jenkins/login"
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          volumeMounts:
+            - name: sleeq-jenkins-data
+              mountPath: /var/jenkins_home
+      volumes:
+        - name: sleeq-jenkins-data
+          persistentVolumeClaim:
+              claimName: sleeq-jenkins-pvc

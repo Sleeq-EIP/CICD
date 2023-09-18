@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: sleeq-api-ingress
+  name: sleeq-ingress
   namespace: default
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
@@ -17,11 +17,20 @@ spec:
             name: sleeq-api-service
             port:
               number: 80
-      - path: "/db"
+
+      - path: "/jenkins"
         pathType: Prefix
         backend:
           service:
-            name: sleeq-mongo-service
+            name: sleeq-jenkins-service
             port:
-              number: 27017
+              number: 8080
+
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: sleeq-site-service
+            port:
+              number: 80
 

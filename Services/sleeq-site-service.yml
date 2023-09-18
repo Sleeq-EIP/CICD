@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sleeq-site-service
+spec:
+  type: ClusterIP
+  selector:
+    app: sleeq-site
+  ports:
+    - name: sleeq-site-port
+      protocol: TCP
+      port: 80
+      targetPort: 80

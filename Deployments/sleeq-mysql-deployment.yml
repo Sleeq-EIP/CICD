@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sleeq-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleeq-mysql
+  template:
+    metadata:
+      labels:
+        app: sleeq-mysql
+    spec:
+      containers:
+      - name: sleeq-mysql
+        image: mysql:latest
+        env:
+        - name: MYSQL_DATABASE
+          value: wordpress
+        - name: MYSQL_ROOT_PASSWORD
+          value: root_pwd
+        ports:
+          - containerPort: 3306
+        volumeMounts:
+        - name: sleeq-mysql-data
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: sleeq-mysql-data
+        persistentVolumeClaim:
+          claimName: sleeq-mysql-pvc
+

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sleeq-site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleeq-site
+  template:
+    metadata:
+      labels:
+        app: sleeq-site
+    spec:
+      containers:
+        - name: sleeq-site
+          image: wordpress:latest
+          ports:
+          - containerPort: 80
+            name: sleeq-site-port
+          volumeMounts:
+            - name: sleeq-site-data
+              mountPath: /var/www
+          env:
+            - name: WP_HOME
+              value: "http://sleeq.westeurope.cloudapp.azure.com/wp/"
+            - name: WP_SITEURL
+              value: "http://sleeq.westeurope.cloudapp.azure.com/wp/"
+            - name: WORDPRESS_URL
+              value: "http://sleeq.westeurope.cloudapp.azure.com/wp"
+            - name: WORDPRESS_DB_HOST
+              value: sleeq-mysql-service
+            - name: WORDPRESS_DB_NAME
+              value: wordpress
+            - name: WORDPRESS_DB_PASSWORD
+              value: root_pwd
+            - name: WORDPRESS_DB_USER
+              value: root
+            - name: WORDPRESS_DEBUG
+              value: "1"
+      volumes:
+        - name: sleeq-site-data
+          persistentVolumeClaim:
+            claimName: sleeq-site-pvc
